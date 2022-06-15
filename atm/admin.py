@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from atm.models import Card, Account
+
+admin.site.register([Card, Account])

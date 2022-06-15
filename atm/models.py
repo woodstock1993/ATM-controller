@@ -2,7 +2,8 @@ from django.db import models
 
 
 class Card(models.Model):
-    pin_number = models.CharField(max_length=256, null=False, blank=False, primary_key=True)
+    card_number = models.CharField(max_length=256, null=False, blank=False, primary_key=True)
+    pin_number = models.CharField(max_length=256, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     account = models.ForeignKey('atm.Account', on_delete=models.CASCADE)
 
