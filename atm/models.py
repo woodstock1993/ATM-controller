@@ -7,14 +7,9 @@ class Card(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     account = models.ForeignKey('atm.Account', on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.name
 
 
 class Account(models.Model):
     account_number = models.CharField(max_length=256, null=False, blank=False, primary_key=True)
     balance = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
