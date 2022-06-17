@@ -45,11 +45,21 @@ $ python manage.py runserver
 ### 인증 테스트 방법
 - [x] http://127.0.0.1:8000/api/accounts/ 
   - 해당 주소에서 계좌 생성하기 -> POST 버튼만 누르면 계좌를 생성할 수 있습니다.
-- [x] http://127.0.0.1:8000/api/cards/ 
-  - 해당 주소로 가서 카드 생성하기 -> 카드 생성시에는 계좌번호 입력 특성상 입력 포맷이 존재합니다.
+ 
+  ![image](https://user-images.githubusercontent.com/67543838/174281897-b4dd07db-c908-49ca-b649-410ca117d895.png)
+  ![image](https://user-images.githubusercontent.com/67543838/174294348-a21f702a-4671-4010-88f0-b079dccba116.png)
+
+
+- [x] http://127.0.0.1:8000/api/cards/
+  - 해당 주소로 가서 카드 생성하기 -> 카드 생성시에는 계좌번호를 입력해야 하는 특성상 입력 포맷이 존재합니다.
 - [x] 카드 생성시 입력 형태 
-  - { "account_number": "11111111111111", "pin_number": "111111"}
+  - { "account_number": "11111111111111", "pin_number": "000000"}
   - 계좌번호는 생성한 14자리 문자열 형태, 핀번호는 6자리를 문자열 형태로 넣어 카드를 생성합니다.
+  
+  ![image](https://user-images.githubusercontent.com/67543838/174294905-4c56f2a6-ec59-4d86-8877-65ed2eccf8f0.png)
+  ![image](https://user-images.githubusercontent.com/67543838/174295000-52fa31c1-3c58-4874-9a0a-609c92c46426.png)
+
+
 - [x] 잔액 조회 및 입출금 테스트
   - 테스트 파일은 루트 디렉토리에 있는 atm.py에서 테스트 하실 수 있습니다. 
   - 계좌 및 카드 개설 후 잔액은 0에서 테스트가 진행됩니다. 
