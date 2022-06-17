@@ -134,6 +134,3 @@ class AccountDetail(APIView):
             account_object.delete()
             return Response({'success_message': "DELETE SUCCESS"}, status=status.HTTP_200_OK)
 
-
-class AccountBalanceDetail(APIView):
-    pass
