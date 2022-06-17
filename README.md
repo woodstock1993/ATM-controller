@@ -66,7 +66,18 @@ $ python manage.py runserver
 - [x] 잔액 조회 및 입출금 테스트
   - current_balance(card_number, pin_number)
     인자로 생성했던 카드 번호와 핀번호를 입력하면 현재 계좌의 잔액을 return 합니다.
+    
+    current_balance(1050109435305481, "000000") // 현재 잔액은 0입니다.
+    
   - deposit(card_number, pin_number, price)
     인자로 카드번호, 핀번호, 입금금액을 입력하면 계좌에 입금 됩니다.
+    
+    deposit(1050109435305481, "000000", 10000) // 금액: 10000이 입금되었습니다. 현재 잔액은 10000입니다.
+    
   - withdraw(card_number, pin_number, price)
-    인자로 카드번호, 핀번호, 입금금액을 입력하면 계좌에서 출금 됩니다.
+    인자로 카드번호, 핀번호, 출금 금액을 입력하면 계좌에서 출금 됩니다.
+    
+    withdraw(1050109435305481, "000000", 10000) // 금액: 10000이 인출 되었습니다. 현재 잔액은 0입니다.
+    
+    
+    
