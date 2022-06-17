@@ -17,13 +17,4 @@ def _request_param(request):
 
 def exception_handling(request):
     requests = _request_param(request)
-    if requests['pin_number'] is None or requests['account_number'] is None:
-        return Response({'error_message': "유효한 핀넘버와 계좌번호를 입력하세요."}, status=status.HTTP_400_BAD_REQUEST)
-    try:
-        pin_number = requests.get('pin_number')
-        len(pin_number) != 6 and map(int, list(pin_number))
-    except ValueError:
-        return Response({'error_message': "핀넘버 6자리를 숫자로 입력하세요."}, status=status.HTTP_400_BAD_REQUEST)
-
-    requests['pin_number'] = hashlib.sha256(requests['pin_number'].encode('utf-8')).hexdigest()
     return requests

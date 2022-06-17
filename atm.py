@@ -13,6 +13,9 @@ from atm.serialers import CardSerializer, AccountSerializer, AccountDetailSerial
 
 
 def hash_code(pin_number):
+    if type(pin_number) != type("a"):
+        print('핀번호를 숫자 6자리 문자열 형태로 입력하세요.')
+        return
     return hashlib.sha256(str(pin_number).encode('utf-8')).hexdigest()
 
 
@@ -24,6 +27,9 @@ def is_valid_card(card_number):
 
 
 def is_valid_card_pin_number(card_number, pin_number):
+    if type(pin_number) != type("a"):
+        print('핀번호를 숫자 6자리 문자열 형태로 입력하세요.')
+        return
     if is_valid_card(card_number):
         card_object = CardSerializer(Card.objects.get(card_number=card_number)).data
         if card_object['pin_number'] != hash_code(pin_number):
@@ -103,8 +109,6 @@ def withdraw(card_number, pin_number, price):
     return
 
 
-# is_valid_card(3285901382865019)
-# is_valid_card_pin_number(3285901382865019, 1111)
-# current_balance(3285901382865019, 1111)
-# deposit(3285901382865019, 1111, 1)
-# withdraw(3285901382865019, 1111, 10001)
+# current_balance("유효한 카드번호", "카드번호에 해당하는 핀번호")
+# deposit("유효한 카드번호", "카드번호에 해당하는 핀번호", "입금금액")
+# withdraw("유효한 카드번호", "카드번호에 해당하는 핀번호", "출금금액")

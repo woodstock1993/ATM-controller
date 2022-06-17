@@ -37,6 +37,7 @@ def is_account_number_in_account(account_number):
         Account.objects.get(account_number=account_number)
     except:
         return False
+    print(True)
     return True
 
 
@@ -51,8 +52,19 @@ class CardList(APIView):
 
     def post(self, request):
         request = exception_handling(request)
+        if request['pin_number'] is None or request['account_number'] is None:
+            return Response({'error_message': "유효한 핀넘버와 계좌번호를 입력하세요."}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            pin_number = str(request.get('pin_number'))
+            print(f'pin_number: {pin_number}')
+            map(int, list(pin_number))
+        except ValueError:
+            return Response({'error_message': "핀넘버 6자리를 숫자로 입력하세요."}, status=status.HTTP_400_BAD_REQUEST)
+        if len(pin_number) != 6:
+            return Response({'error_message': "핀넘버 6자리를 숫자로 입력하세요."}, status=status.HTTP_400_BAD_REQUEST)
         if not is_account_number_in_account(request['account_number']):
             return Response({'error_message': "유효한 계좌번호를 입력하세요."}, status=status.HTTP_400_BAD_REQUEST)
+        request['pin_number'] = hashlib.sha256(request['pin_number'].encode('utf-8')).hexdigest()
         try:
             card_number = card_number_generator()
             request.update({'card_number': card_number})
@@ -61,7 +73,7 @@ class CardList(APIView):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             else:
-                return Response({'error_message': "카드 생성1에 실패하였습니다."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'error_message': "카드 생성에 실패하였습니다."}, status=status.HTTP_400_BAD_REQUEST)
         except ValueError:
             return Response({'error_message': "카드 생성2에 실패하였습니다."}, status=status.HTTP_400_BAD_REQUEST)
 
