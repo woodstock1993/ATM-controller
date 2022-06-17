@@ -7,14 +7,19 @@ class CardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card
         fields = (
-            'card_number',
             'pin_number',
-            'account',
+            'account_number',
+            'card_number',
         )
 
 
-class AccountSerializer(serializers.ModelSerializer):
+class CardDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Card
+        fields = '__all__'
 
+
+class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = (
