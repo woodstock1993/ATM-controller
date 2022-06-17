@@ -39,7 +39,7 @@ $ python -m venv venv
 $ pip install --upgrade pip
 $ source venv/bin/activate // Mac
 $ .\venv\Scripts\activate  // Window
-$ python install -r requirements.txt
+$ pip install -r requirements.txt
 $ python manage.py makemigrations
 $ python manage.py migrate
 $ python manage.py runserver
