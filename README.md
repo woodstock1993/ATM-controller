@@ -36,8 +36,12 @@ Insert Card => PIN number => Select Account => See Balance/Deposit/Withdraw
 ### Step to run
 ```
 $ python -m venv venv
-$ source venv/Scripts/activate
+$ pip install --upgrade pip
+$ source venv/bin/activate // Mac
+$ .\venv\Scripts\activate  // Window
 $ python install -r requirements.txt
+$ python manage.py makemigrations
+$ python manage.py migrate
 $ python manage.py runserver
 ```
 
